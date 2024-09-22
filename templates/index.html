@@ -1,0 +1,40 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务生成器</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        textarea { width: 100%; height: 150px; }
+        button { padding: 10px 20px; font-size: 16px; margin-top: 10px; }
+        .output { margin-top: 20px; }
+        .output h2 { margin-top: 20px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>任务日程与检查单生成器</h1>
+        <form method="POST" action="{{ url_for('index') }}">
+            <label for="tasks">输入任务列表（每行一个任务）:</label><br>
+            <textarea id="tasks" name="tasks" placeholder="任务1&#10;任务2&#10;任务3"></textarea><br>
+            <button type="submit">生成日程与检查单</button>
+        </form>
+        
+        <div class="output">
+            {% if schedule %}
+                <h2>生成的日程表:</h2>
+                <div>{{ schedule }}</div>
+            {% endif %}
+            {% if checklist %}
+                <h2>生成的检查单:</h2>
+                <div>{{ checklist }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

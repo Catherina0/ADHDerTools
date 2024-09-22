@@ -1,0 +1,53 @@
+/* static/styles.css */
+
+ol {
+    counter-reset: list-counter;
+    list-style: none;
+    padding-left: 1.5em;
+}
+
+ol li {
+    position: relative;
+    margin-bottom: 0.5em;
+}
+
+ol li::before {
+    counter-increment: list-counter;
+    content: counter(list-counter) ". ";
+    position: absolute;
+    left: -1.5em;
+    width: 1.5em;
+    text-align: right;
+    font-weight: bold;
+}
+
+ol.custom-ol {
+    counter-reset: custom-list-counter;
+}
+
+ol.custom-ol li::before {
+    counter-increment: custom-list-counter;
+    content: counter(custom-list-counter, decimal) ") ";
+    left: -1.5em;
+}
+
+/* Additional styles for better readability */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
