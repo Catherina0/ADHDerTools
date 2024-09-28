@@ -9,7 +9,7 @@ import bleach
 from dotenv import load_dotenv
 import openai
 
-# Initialize Flask application
+# 初始化Flask
 app = Flask(__name__)
 
 load_dotenv()
@@ -17,23 +17,21 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 if not api_key:
-    raise ValueError("No API key found. Please set your OPENAI_API_KEY environment variable or provide it in the code.")
+    raise ValueError("未找到API密钥。请在环境变量中设置OPENAI_API_KEY或在代码中提供。")
 
-# Initialize OpenAI client
+# OpenAI api
 client = OpenAI(api_key=api_key)
 
 def convert_markdown_to_safe_html(md_text):
-    # Convert markdown to HTML
+    # Markdown转HTML
     html = markdown.markdown(md_text)
     
-    # Define allowed tags and attributes
+    # 标签和属性
     allowed_tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'strong', 'em', 'a', 'code', 'pre', 'blockquote', 'table', 'thead', 'tbody', 'tr', 'th', 'td']
     allowed_attributes = {'a': ['href', 'title']}
     
-    # Sanitize the HTML
     clean_html = bleach.clean(html, tags=allowed_tags, attributes=allowed_attributes)
     
-    # Mark the cleaned HTML as safe
     return Markup(clean_html)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -46,10 +44,9 @@ def index():
             tasks = tasks_input.strip().split('\n')
             tasks = [task.strip() for task in tasks if task.strip()]
             
-            # Get current time
+            # 当前时间
             current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             
-            # Define prompt
             prompt = (
                 f"当前时间是 {current_time}，请用markdown格式，整理所有的任务，并且按照当前时间将下列事情排入日程表中，"
                 f"最后生成一个按照紧迫和重要程度生成的检查单表格。\n\n"
@@ -58,7 +55,7 @@ def index():
             )
             
             try:
-                # Call OpenAI API
+
                 chat_completion = client.chat.completions.create(
                     messages=[
                         {
@@ -77,7 +74,7 @@ def index():
                 
                 assistant_message = chat_completion.choices[0].message.content
                 
-                # Split into schedule and checklist
+                # 分割为日程表和检查单
                 parts = assistant_message.split("### 检查单")
                 if len(parts) == 2:
                     schedule_markdown = parts[0].strip()
@@ -86,7 +83,7 @@ def index():
                     schedule_markdown = assistant_message
                     checklist_markdown = "未能生成检查单。"
 
-                # Convert markdown to safe HTML
+                # Markdown转HTML
                 schedule = convert_markdown_to_safe_html(schedule_markdown)
                 checklist = convert_markdown_to_safe_html(checklist_markdown)
                 
