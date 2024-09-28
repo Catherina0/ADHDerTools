@@ -17,14 +17,14 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 if not api_key:
-    raise ValueError("未找到API密钥。请在环境变量中设置OPENAI_API_KEY或在代码中提供。")
+    raise ValueError("未找到API key")
 
 # OpenAI api
 client = OpenAI(api_key=api_key)
 
 def convert_markdown_to_safe_html(md_text):
     # Markdown转HTML
-    html = markdown.markdown(md_text)
+    html = markdown.markdown(md_text, extensions=['tables'])
     
     # 标签和属性
     allowed_tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'strong', 'em', 'a', 'code', 'pre', 'blockquote', 'table', 'thead', 'tbody', 'tr', 'th', 'td']
@@ -49,7 +49,7 @@ def index():
             
             prompt = (
                 f"当前时间是 {current_time}，请用markdown格式，整理所有的任务，并且按照当前时间将下列事情排入日程表中，"
-                f"最后生成一个按照紧迫和重要程度生成的检查单表格。\n\n"
+                f"最后生成一个按照紧迫和重要程度生成的检查单表格。检查单必须使用markdown表格格式。\n\n"
                 f"任务列表：\n"
                 f"{chr(10).join([f'- {task}' for task in tasks])}"
             )
