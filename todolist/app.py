@@ -13,14 +13,14 @@ import openai
 app = Flask(__name__)
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
-if not api_key:
+if not openai_api_key:
     raise ValueError("未找到API key")
 
 # OpenAI api
-client = OpenAI(api_key=api_key)
+client = OpenAI(api_key=openai_api_key)
 
 def convert_markdown_to_safe_html(md_text):
     # Markdown转HTML
@@ -48,9 +48,20 @@ def index():
             current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             
             prompt = (
-                f"当前时间是 {current_time}，请用markdown格式，整理所有的任务，并且按照当前时间将下列事情排入日程表中，"
-                f"最后生成一个按照紧迫和重要程度生成的检查单表格。检查单必须使用markdown表格格式。\n\n"
-                f"任务列表：\n"
+                f"当前时间是 {current_time}。请按以下要求使用中文处理任务列表，只提取与大学生作业相关的具体任务信息，忽略概括性或不相关的内容，并将任务进行分段。\n\n"
+                f"过滤规则：\n"
+                f"- 忽略长度过短或过于笼统的任务描述\n"
+                f"- 仅保留包含具体行动项和（或）截止日期的任务\n\n"
+                f"1. 生成日程表:\n"
+                f"   - 使用Markdown格式\n"
+                f"   - 按天分配任务\n"
+                f"   - 列出每个任务的截止期限（如果有）\n\n"
+                f"2. 生成检查单:\n"
+                f"   - 使用Markdown表格格式\n"
+                f"   - 按紧迫性和重要性排序\n"
+                f"   - 包含序号\n\n"
+                f"请确保将日程表和检查单分开，以便后续处理。\n\n"
+                f"任务列表:\n"
                 f"{chr(10).join([f'- {task}' for task in tasks])}"
             )
             

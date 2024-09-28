@@ -20,19 +20,15 @@
     <div class="container">
         <h1>任务日程与检查单生成器</h1>
         <form method="POST" action="{{ url_for('index') }}">
-            <label for="tasks">输入任务列表（每行一个任务）:</label><br>
-            <textarea id="tasks" name="tasks" placeholder="任务1&#10;任务2&#10;任务3"></textarea><br>
+            <label for="tasks">输入文本</label><br>
+            <textarea id="tasks" name="tasks" ></textarea><br>
             <button type="submit">生成日程与检查单</button>
         </form>
         
         <div class="output">
             {% if schedule %}
-                <h2>生成的日程表:</h2>
+                <h2></h2>
                 <div>{{ schedule }}</div>
-            {% endif %}
-            {% if checklist %}
-                <h2>生成的检查单:</h2>
-                <div>{{ checklist }}</div>
             {% endif %}
         </div>
     </div>
