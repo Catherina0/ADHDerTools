@@ -85,7 +85,7 @@ def index():
                 
                 assistant_message = chat_completion.choices[0].message.content
                 
-                # 分割为日程表和检查单
+                # 分割日程表检查单
                 parts = assistant_message.split("### 检查单")
                 if len(parts) == 2:
                     schedule_markdown = parts[0].strip()
