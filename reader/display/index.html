@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本阅读器</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button id="toggle-reading-mode">进入阅读模式</button>
+    <div id="reader" contenteditable="true">
+        <!-- 这里放置要阅读的文本内容 -->
+        <p>这是示例文本。请在这里添加您的内容。这个段落将会根据浏览器窗口的宽度自动换行，每一行都会被分配一个独立的行号。</p>
+        <p>另一个段落，用于测试换行和行号功能。确保长文本能够正确地拆分到多个行号下。</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
