@@ -1,0 +1,32 @@
+body { 
+    font-family: Arial, 'Noto Sans SC', sans-serif; 
+    margin: 20px; 
+}
+.container { max-width: 800px; margin: 0 auto; }
+textarea, #output { 
+    width: 100%; 
+    height: 200px; 
+    margin-bottom: 10px;
+    font-family: Arial, 'Noto Sans SC', monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    resize: vertical;
+}
+#output {
+    font-family: Arial, 'Noto Sans SC', sans-serif;
+    line-height: 1.6;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+}
+#output strong {
+    font-weight: bold;
+}
+button { 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    margin-top: 10px; 
+}
+.output { margin-top: 20px; }
+.output h2 { margin-top: 20px; }
+.error { color: red; }
