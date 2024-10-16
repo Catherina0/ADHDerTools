@@ -1,3 +1,5 @@
+我觉得我是个傻逼，我为什么要用html来做这个项目（）  
+准备搬到python或者其他语言上  
 todolist  
 ~~0. todolist（改markdown格式和渲染）~~  
 0. 日历和 ~~优先级自动排序~~  
