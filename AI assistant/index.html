@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 对话框</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-layout">
+        <!-- 左侧边栏 -->
+        <aside class="sidebar">
+            <button class="new-chat">新建对话</button>
+            <div class="chat-history">
+                <!-- 历史对话列表将在这里动态生成 -->
+            </div>
+            <div class="sidebar-footer">
+                <div class="settings">
+                    <label for="modelSelect">选择模型：</label>
+                    <select id="modelSelect">
+                        <option value="gpt-3.5-turbo">GPT-3.5</option>
+                        <option value="gpt-4o">GPT-4o</option>
+                    </select>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 主对话区域 -->
+        <main class="main-content">
+            <div id="chatWindow" class="chat-window">
+                <!-- 对话内容将在这里动态生成 -->
+            </div>
+            
+            <!-- 底部输入区域 -->
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <label for="presetPrompts">选择提示词：</label>
+                    <select id="presetPrompts">
+                        <option value="">--选择提示词--</option>
+                        <option value="Teacher">导师模式</option>
+                        <option value="Cat">猫娘模式</option>
+                    </select>
+                    <button id="startModeBtn">启动模式</button>
+                    <textarea id="userInput" rows="1" placeholder="输入消息..." class="message-input"></textarea>
+                    <button id="sendBtn" class="send-button">发送</button>
+                </div>
+                <div class="input-footer">
+                    <label>
+                        <input type="checkbox" id="rememberContext" checked>
+                        记住上下文
+                    </label>
+                    <label>
+                        <input type="checkbox" id="enableSearch">
+                        ChatGPT4o 搜索模式
+                    </label>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
