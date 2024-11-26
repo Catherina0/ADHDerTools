@@ -130,3 +130,40 @@ input[type="file"] {
     min-height: 50px; /* 设置输入框的最小高度 */
     resize: vertical; /* 允许用户垂直调整输入框大小 */
 }
+
+#copyBtn {
+    background: #28a745;  /* 使用绿色区分复制按钮 */
+}
+
+#copyBtn:hover {
+    background: #218838;
+}
+
+/* 添加复制成功的动画效果 */
+@keyframes copySuccess {
+    0% { background: #28a745; }
+    50% { background: #155724; }
+    100% { background: #28a745; }
+}
+
+.copy-success {
+    animation: copySuccess 0.5s ease;
+}
+
+#downloadBtn {
+    background: #6c757d;  /* 使用灰色区分下载按钮 */
+}
+
+#downloadBtn:hover {
+    background: #5a6268;
+}
+
+.download-success {
+    animation: downloadSuccess 0.5s ease;
+}
+// 下载的框
+@keyframes downloadSuccess {
+    0% { background: #6c757d; }
+    50% { background: #4b545c; }
+    100% { background: #6c757d; }
+}

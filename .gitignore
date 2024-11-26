@@ -1,0 +1,17 @@
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 编辑器配置文件
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 依赖目录
+node_modules/ 
