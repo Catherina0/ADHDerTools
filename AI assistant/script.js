@@ -1,6 +1,13 @@
 let conversation = [];
-//const apiKey = 
-//上传时删除
+//上传时注释
+const apiKey = process.env.API_KEY;
+
+if (!apiKey) {
+    throw new Error("API_KEY is not set in the environment variables.");
+}
+
+console.log(`Your API Key is: ${apiKey}`);
+//
 //const apiKey = process.env.API_KEY;
 let currentMode = '';
 
@@ -257,7 +264,6 @@ document.getElementById('markdownBtn').addEventListener('click', function() {
     // 使用现有的 displayMessage 和 conversation 机制 不显示提示词
     //displayMessage(prompt, 'user');
     conversation.push({ role: 'user', content: prompt });
-    
     // 使用现有的API请求机制
     fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',

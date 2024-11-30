@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateHighlight() {
         removeHighlights();
         if (!currentPosition.node) return;
-
         const { node, offset } = currentPosition;
         const text = node.textContent;
         const start = Math.max(0, offset - 7);
